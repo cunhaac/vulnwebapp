@@ -1,0 +1,16 @@
+First Name	Last Name	Email	Phone	Occupation	Salary
+Jared	Wilson	j.wilson@randatmail.com	275-0386-18	Firefighter	4536
+Vivian	Casey	v.casey@randatmail.com	433-9522-00	Teacher	5038
+Alissa	Jones	a.jones@randatmail.com	069-1054-28	Lecturer	6090
+Brooke	Allen	b.allen@randatmail.com	438-4873-53	Insurer	1168
+Cherry	Lloyd	c.lloyd@randatmail.com	684-1653-04	Driver	1135
+John	Warren	j.warren@randatmail.com	063-0504-50	Fashion Designer	1505
+Thomas	Evans	t.evans@randatmail.com	083-2507-52	Dancer	3821
+Luke	Farrell	l.farrell@randatmail.com	598-8189-87	Mathematician	8801
+Carl	Williams	c.williams@randatmail.com	857-0564-29	Dancer	3262
+Fenton	Miller	f.miller@randatmail.com	008-3011-76	Chef	1242
+Wilson	Stevens	w.stevens@randatmail.com	406-0492-66	Aeroplane Pilot	8531
+Lenny	Harris	l.harris@randatmail.com	536-2062-91	Mathematician	2596
+Bruce	Tucker	b.tucker@randatmail.com	371-9579-28	Chef	4638
+Alissa	Miller	a.miller@randatmail.com	008-7907-54	Agronomist	1371
+Deanna	Walker	d.walker@randatmail.com	041-0664-44	Graphic Designer	6578

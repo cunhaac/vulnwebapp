@@ -3,4 +3,36 @@
 
 {% block content %}
 
+      <!-- VULNERABLE -->
+      <br>
+      <br>  
+      <h1>Available photos: keyboard.jpg</h1>
+      <br>
+      <br>
+
+      <form action="/dirtrav/vulnerable" method="GET"> 
+        <div class="notification is-danger is-light">
+          The field below is vulnerable to Directory Transversal!
+        </div>
+        <br>
+        <input name="image" class="input is-rounded" type="text" placeholder="Input">
+        <br>
+        <br>
+        <button type=submit class="button is-success is-rounded">Search</button>
+      </form>
+
+    
+      <!--NON VULNERABLE -->
+
+      <form action="/dirtrav/nonvulnerable" method="GET"> 
+        <div class="notification is-success is-light">
+          The field below is protected against to Directory Transversal!
+        </div>
+        <br>
+        <input name="image" class="input is-rounded" type="text" placeholder="Input">
+        <br>
+        <br>
+        <button type=submit class="button is-success is-rounded">Search</button>
+      </form>
+
 {% endblock %}

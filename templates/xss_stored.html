@@ -6,7 +6,6 @@
 
       <form action="/xss_stored/vulnerable" method="POST"> 
         <div class="notification is-danger is-light">
-          <button class="delete"></button>
           The field below is vulnerable to XSS stored!
         </div>
         <br>
@@ -40,14 +39,13 @@
       
       <!--NON VULNERABLE -->
       
-      <form action="/xss_stored/vulnerable" method="POST"> 
+      <form action="/xss_stored/nonvulnerable" method="POST"> 
         <div class="notification is-success is-light">
-          <button class="delete"></button>
           The field below is protected against XSS stored!
         </div>
         <br>
         <h6>What are your improvement suggestions for our service?</h6>
-            <input name="query" class="input is-rounded" type="text" placeholder="Input">
+            <input name="sugestion2" class="input is-rounded" type="text" placeholder="Input">
         <br>
         <br>
           <button type="submit" class="button is-success is-rounded">Comment</button>
