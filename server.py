@@ -4,7 +4,7 @@ import sqlite3, os
 
 now = datetime.now()
 
-SAFE_FOLDER = '/home/pedro/Desktop/av_project/photos/'
+SAFE_FOLDER = ''
 app = Flask(__name__)
 
  
