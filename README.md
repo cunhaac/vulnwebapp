@@ -6,4 +6,4 @@
 - XSS DOM
 - SQL injection
 - Directory Transversal
-- ✨Magic ✨
+✨ ✨
