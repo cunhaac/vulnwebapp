@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block content %}
+      <!-- VULNERABLE -->
+
+      <form action="/sqli/vulnerable" method="POST"> 
+        <div class="notification is-danger is-light">
+          <button class="delete"></button>
+          The field below is vulnerable to SQL injection!
+        </div>
+        <h6>Search the email to contact your partner</h6>
+        <br>
+        <input name="name" class="input is-rounded" type="text" placeholder="Input">
+        <br>
+        <br>
+        <button type=submit class="button is-success is-rounded">Search</button>
+      </form>
+      {% autoescape false %}
+        {% if result %}
+          {% for x in result %}
+            <center>
+                <p> <h6>Results for {{name}} :</h6>
+                  <b>{{x[0]}}</b>
+                </p>
+            </center>
+          {% endfor %}
+        {% endif %}
+      {% endautoescape %}
+      
+      <!--NON VULNERABLE -->
+      
+      <form action="/sqli/nonvulnerable" method="POST"> 
+        <div class="notification is-success is-light">
+          <button class="delete"></button>
+          The field below is protected against SQL injection!
+        </div>
+        <h6>Search the email to contact your partner</h6>
+        <br>
+          <input name="name" class="input is-rounded" type="text" placeholder="Input">
+        <br>
+        <br>
+          <button type="submit" class="button is-success is-rounded">Search</button>
+        <br>
+      </form>
+      <br>
+      {% if result2 %}
+      <center>
+          <p> <h6>Results for {{result2}} :</h6>
+          </p>
+      </center>
+      {% endif %}	
+      
+    </body>
+</html>
+{% endblock %}

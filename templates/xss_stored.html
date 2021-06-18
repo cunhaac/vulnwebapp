@@ -1,0 +1,84 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+      <!-- VULNERABLE -->
+
+      <form action="/xss_stored/vulnerable" method="POST"> 
+        <div class="notification is-danger is-light">
+          <button class="delete"></button>
+          The field below is vulnerable to XSS stored!
+        </div>
+        <br>
+        <h6>What are your improvement suggestions for our service?</h6>
+        <input name="sugestion" class="input is-rounded" type="text" placeholder="Input">
+        <br>
+        <br>
+        <button type=submit class="button is-success is-rounded">Comment</button>
+      </form>
+
+      <!--TABLE -->
+      
+      <table id="example" class="table is-striped" style="width:100%">
+        {% autoescape false %}
+        {% for sugestion, date in data %}
+        <thead>
+            <tr>
+                <th>Sugestion</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{sugestion}}</td>
+                <td>{{date}}</td>
+            </tr>
+        </tbody>
+        {% endfor %}
+        {% endautoescape %}
+    </table>
+      
+      <!--NON VULNERABLE -->
+      
+      <form action="/xss_stored/vulnerable" method="POST"> 
+        <div class="notification is-success is-light">
+          <button class="delete"></button>
+          The field below is protected against XSS stored!
+        </div>
+        <br>
+        <h6>What are your improvement suggestions for our service?</h6>
+            <input name="query" class="input is-rounded" type="text" placeholder="Input">
+        <br>
+        <br>
+          <button type="submit" class="button is-success is-rounded">Comment</button>
+        <br>
+      </form>
+      <br>
+
+
+     <!--TABLE -->
+
+
+      <table id="example" class="table is-striped" style="width:100%">
+
+        {% for sugestion, date in data %}
+        <thead>
+            <tr>
+                <th>Sugestion</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{sugestion}}</td>
+                <td>{{date}}</td>
+            </tr>
+        </tbody>
+        {% endfor %}
+    </table>
+
+
+
+    </body>
+</html>
+{% endblock %}

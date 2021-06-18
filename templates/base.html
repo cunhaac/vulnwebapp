@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
+    <title>AV PROJECT</title>
+</head>
+<body>
+      <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+          <a class="navbar-item" href="/">
+            <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Flogodownload.org%2Fwp-content%2Fuploads%2F2014%2F09%2Fgoogle-logo-1.png&f=1&nofb=1" width="112" height="28">
+          </a>
+      
+          <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+          </a>
+        </div>
+      
+        <div id="navbarBasicExample" class="navbar-menu">
+          <div class="navbar-start">
+            <a class="navbar-item">
+              Home
+            </a>
+      
+            <a href="/xss_stored" class="navbar-item">
+                XSS stored
+            </a>
+            <a href="/xss_reflected" class="navbar-item">
+                XSS reflected
+            </a>
+            <a href="/xss_dom" class="navbar-item">
+                XSS dom
+            </a>
+            <a href="/sqli" class="navbar-item">
+                SQL injection
+            </a>
+            <a href="/dirtrav" class="navbar-item">
+                Dirtrav
+            </a>
+
+          </div>
+        </div>
+      </nav>
+      {% block content %}
+      {% endblock %}
+</body>
+</html>
