@@ -2,47 +2,22 @@
 
 {% block content %}
       <!-- VULNERABLE -->
-
-      <form action="/xss_reflected/vulnerable" method="GET"> 
-        <div class="notification is-danger is-light">
-          The field below is vulnerable to XSS DOM!
-        </div>
-        <br>
-        <input name="query" class="input is-rounded" type="text" placeholder="Input">
-        <br>
-        <br>
-        <button type=submit class="button is-success is-rounded">Search</button>
-      </form>
-      {% autoescape false %}
-        {% if query %}
-        <center>
-            <p> <h6>Results for {{query}} :</h6>
-            </p>
-        </center>
-        {% endif %}	
-      {% endautoescape %}
-      
-      <!--NON VULNERABLE -->
-      
-      <form action="/xss_reflected/nonvulnerable" method="POST"> 
-        <div class="notification is-success is-light">
-          The field below is protected against XSS DOM!
-        </div>
-        <br>
-          <input name="query" class="input is-rounded" type="text" placeholder="Input">
-        <br>
-        <br>
-          <button type="submit" class="button is-success is-rounded">Search</button>
-        <br>
-      </form>
-      <br>
-      {% if query2 %}
-      <center>
-          <p> <h6>Results for {{query2}} :</h6>
-          </p>
-      </center>
-      {% endif %}	
-      
-    </body>
-</html>
+      <div class="notification is-danger is-light">
+        The field below is vulnerable to XSS DOM!
+      </div>
+        <h2>Addition Calculator</h2>
+        <div id="result">Fail</div>
+        <input id='first'></input>
+        <input id='second'></input>
+        <script>
+          var num = document.URL.split('num=')[1];
+          document.getElementById('result').innerHTML = eval(num);
+  
+          function redirect(){
+            var url = document.location.href.split('/')[0] + '?num=' + document.getElementById('first').value + '+' + document.getElementById('second').value;
+            console.log(url)
+            document.location = url;
+          }
+        </script>
+        <button onclick=redirect()>Submit</button>
 {% endblock %}

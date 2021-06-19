@@ -15,6 +15,9 @@ CREATE TABLE "EMPLOYEES" ("name" TEXT, "email" TEXT, "age" INTEGER, "salary" INT
 TABLE_IMPROVEMENT_SUGESTIONS = '''
 CREATE TABLE "SUGESTIONS" ("sugestion" TEXT, "date" TEXT)
 '''
+TABLE_IMPROVEMENT_SUGESTIONSNONVUL = '''
+CREATE TABLE "SUGESTIONSNONVUL" ("sugestion" TEXT, "date" TEXT)
+'''
 EMPLOYEES = '''INSERT INTO "EMPLOYEES" VALUES 
 ("Pedro", "pedro@google.com", "23", "1000"),
 ("Paulo", "paulo@sec.pt", "35", "1500"),
@@ -26,6 +29,7 @@ try:
     conn = sqlite3.connect('av.sqlite')
     conn.execute(TABLE_USERS)
     conn.execute(TABLE_IMPROVEMENT_SUGESTIONS)
+    conn.execute(TABLE_IMPROVEMENT_SUGESTIONSNONVUL)
     conn.execute(EMPLOYEES)
     conn.commit()
 except sqlite3.OperationalError:
@@ -52,13 +56,9 @@ def xss_stored():
 def xss_stored_vul():
 
     date = now.strftime("%d/%m/%Y %H:%M:%S")
-    
-    #READ DATA
     conn = sqlite3.connect('av.sqlite')
     cursor = conn.cursor()
-    read = ''' SELECT * FROM SUGESTIONS '''
-    data = list(cursor.execute(read))
-    print(data)
+    
     #WRITE DATA
     if request.method == 'POST':
 
@@ -69,6 +69,9 @@ def xss_stored_vul():
                 '''
         cursor.execute(INSERT)
         conn.commit()
+    #READ DATA
+    read = ''' SELECT * FROM SUGESTIONS '''
+    data = list(cursor.execute(read))
 
     return render_template('xss_stored.html', data=data)
 
@@ -77,25 +80,24 @@ def xss_stored_vul():
 def xss_stored_nonvul():
 
     date = now.strftime("%d/%m/%Y %H:%M:%S")
-    
-    #READ DATA
     conn = sqlite3.connect('av.sqlite')
     cursor = conn.cursor()
-    read = ''' SELECT * FROM SUGESTIONS '''
-    data = list(cursor.execute(read))
-    print(data)
+    
     #WRITE DATA
     if request.method == 'POST':
 
         sugestion = request.form['sugestion2']
         INSERT = f'''
-                INSERT INTO "SUGESTIONS" 
+                INSERT INTO "SUGESTIONSNONVUL" 
                 VALUES("{sugestion}", "{date}")
                 '''
         cursor.execute(INSERT)
         conn.commit()
+    #READ DATA
+    read = ''' SELECT * FROM SUGESTIONSNONVUL '''
+    data2 = list(cursor.execute(read))
 
-    return render_template('xss_stored.html', data=data)
+    return render_template('xss_stored.html', data2=data2)
 
 
 # XSS REFLECTED
@@ -109,7 +111,7 @@ def xss_reflected_vul():
     query = None
 
     if request.method == 'GET':
-        query = request.args.get('sugestion2')
+        query = request.args.get('query')
 
     return render_template('xss_reflected.html', query=query)
 
@@ -117,12 +119,12 @@ def xss_reflected_vul():
 @app.route('/xss_reflected/nonvulnerable', methods=['GET', 'POST'])
 def xss_reflected_nonvul():
 
-    query = None
+    query2 = None
 
     if request.method == 'POST':
-        query = request.form['query']
+        query2 = request.form['query2']
     
-    return render_template('xss_reflected.html', query2=query)
+    return render_template('xss_reflected.html', query2=query2)
 
 #XSS DOM
 @app.route('/xss_dom', methods=['GET'])
@@ -133,23 +135,12 @@ def xss_dom():
 @app.route('/xss_dom/vulnerable', methods=['GET'])
 def xss_dom_vul():
 
-    query = None
-
-    if request.method == 'GET':
-        query = request.args.get('query')
-
-    return render_template('xss_dom.html', query=query)
+    return render_template('xss_dom.html')
 
 
 @app.route('/xss_dom/nonvulnerable', methods=['GET', 'POST'])
-def xss_dom_nonvul():
-
-    query = None
-
-    if request.method == 'POST':
-        query = request.form['query']
-    
-    return render_template('xss_dom.html', query2=query)
+def xss_dom_nonvul():    
+    return render_template('xss_dom.html')
 
 #SQLI
 @app.route('/sqli', methods=['GET', 'POST'])
@@ -190,7 +181,7 @@ def dirtrav():
 def dirtrav_vul():
 
     name = request.args.get('image')
-    return send_file(SAFE_FOLDER + name)
+    return send_file(name)
 
 
 @app.route('/dirtrav/nonvulnerable/', methods=['GET', 'POST'])
